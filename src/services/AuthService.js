@@ -1,4 +1,4 @@
-import api from '@/services/api';
+import api from '@/services/_api';
 
 // AuthService
 export const login = (id, password) => api().post('/auth/login', {id, password});
