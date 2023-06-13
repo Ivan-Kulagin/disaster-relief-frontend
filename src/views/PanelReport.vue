@@ -1,0 +1,106 @@
+<template>
+  <v-container>
+    <v-card-title
+      ><v-btn icon @click="goBack"
+        ><v-icon v-text="'mdi-arrow-right'" /></v-btn></v-card-title
+    ><v-divider class="mb-4" />
+    <h2>Отчёт по происшествию (Пожар, БОЛОТНАЯ НАБ., #52)</h2>
+    <v-card>
+      <v-card-title> </v-card-title>
+      <v-data-table :items="report" :headers="reportHeaders" />
+      <h3>Рекомендуемая гуманитарная помощь</h3>
+    </v-card>
+    <v-card>
+      <v-card-text align="left" class="body-1">
+        <p>
+          <strong>Пищевые наборы:</strong> консервы, сухие продукты питания,
+          рис, мука, масло, сахар, соль и другие неперишабельные продукты,
+          которые могут быть легко приготовлены без доступа к кухне.
+        </p>
+        <p>
+          <strong>Питьевая вода:</strong> бутилированная или упакованная
+          питьевая вода, чтобы обеспечить людей доступом к безопасной питьевой
+          воде.
+        </p>
+        <p>
+          <strong>Медикаменты и аптечки:</strong> базовые медикаменты, бинты,
+          антисептики, перевязочные материалы и другие предметы первой помощи.
+        </p>
+        <p>
+          <strong>Средства освещения:</strong> фонари, свечи и зажигалки, чтобы
+          обеспечить освещение во время отсутствия электричества.
+        </p>
+        <p>
+          <strong>Одежда и обувь:</strong> новая или хорошо сохраненная одежда и
+          обувь для людей, которые могут потерять свои вещи в результате пожара.
+        </p>
+        <p>
+          <strong>Постельное белье и одеяла:</strong> чистые простыни, подушки,
+          одеяла и спальные мешки для обеспечения комфорта и тепла пострадавшим.
+        </p>
+        <p>
+          <strong>Гигиенические средства:</strong> мыло, зубные щетки, паста,
+          шампуни, губки, влажные салфетки, мочалки и другие предметы гигиены,
+          необходимые для поддержания чистоты и здоровья.
+        </p>
+        <p>
+          <strong>Детские принадлежности:</strong> питание для грудных детей,
+          памперсы, детские игрушки, одежда для младенцев и другие предметы,
+          необходимые для ухода за детьми.
+        </p>
+        <p>
+          <strong>Упаковочные материалы:</strong> пластиковые мешки, пленка,
+          скотч и другие материалы для упаковки и хранения пожертвований.
+        </p>
+      </v-card-text>
+    </v-card>
+  </v-container>
+</template>
+
+<script>
+import { getMapData } from "@/mock/MapMock";
+export default {
+  name: "TableView",
+  data() {
+    return {
+      search: "",
+      map: [],
+      report: [
+        { disaster: "Пожар", victims: 80, injuries: "Ушибы, ожоги" },
+        { disaster: "Пожар", victims: 120, injuries: "Переломы" },
+        { disaster: "Пожар", victims: 100, injuries: "Переломы, сотрясения" },
+        { disaster: "Пожар", victims: 120, injuries: "Отравления, ожоги" },
+        { disaster: "Пожар", victims: 100, injuries: "Ожоги, ушибы, переломы" },
+        { disaster: "Пожар", victims: 85, injuries: "Отравления, сотрясения" },
+      ],
+      mapHeaders: [
+        { text: "Номер", value: "Number" },
+        { text: "Имя", value: "Name" },
+        { text: "Адрес", value: "Address" },
+        { text: "Долгота", value: "Latitude" },
+        { text: "Широта", value: "Longitude" },
+        { text: "Радиус", value: "Dr_number" },
+      ],
+      reportHeaders: [
+        { text: "Тип происшествия", value: "disaster" },
+        { text: "Оценочное количество жертв", value: "victims" },
+        { text: "Травмы", value: "injuries" },
+      ],
+    };
+  },
+  methods: {
+    getMapData() {
+      this.map = getMapData();
+    },
+    goBack() {
+      this.$store.commit("setPageTransition", "back");
+      this.$router.go(-1);
+    },
+  },
+  mounted() {
+    this.getMapData();
+  },
+};
+</script>
+
+<style scoped></style>
