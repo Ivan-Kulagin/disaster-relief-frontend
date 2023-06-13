@@ -58,13 +58,11 @@
 </template>
 
 <script>
-import { getMapData } from "@/mock/MapMock";
 export default {
   name: "TableView",
   data() {
     return {
       search: "",
-      map: [],
       report: [
         { disaster: "Пожар", victims: 80, injuries: "Ушибы, ожоги" },
         { disaster: "Пожар", victims: 120, injuries: "Переломы" },
@@ -72,14 +70,6 @@ export default {
         { disaster: "Пожар", victims: 120, injuries: "Отравления, ожоги" },
         { disaster: "Пожар", victims: 100, injuries: "Ожоги, ушибы, переломы" },
         { disaster: "Пожар", victims: 85, injuries: "Отравления, сотрясения" },
-      ],
-      mapHeaders: [
-        { text: "Номер", value: "Number" },
-        { text: "Имя", value: "Name" },
-        { text: "Адрес", value: "Address" },
-        { text: "Долгота", value: "Latitude" },
-        { text: "Широта", value: "Longitude" },
-        { text: "Радиус", value: "Dr_number" },
       ],
       reportHeaders: [
         { text: "Тип происшествия", value: "disaster" },
@@ -89,16 +79,10 @@ export default {
     };
   },
   methods: {
-    getMapData() {
-      this.map = getMapData();
-    },
     goBack() {
       this.$store.commit("setPageTransition", "back");
       this.$router.go(-1);
     },
-  },
-  mounted() {
-    this.getMapData();
   },
 };
 </script>
