@@ -9,7 +9,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   plugins: [createPersistedState()],
   state: {
-    mockData: false,
+    mockData: true,
     authToken: null,
     pageTransition: {
       name: "router-view",

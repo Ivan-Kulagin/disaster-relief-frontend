@@ -100,7 +100,7 @@ const routes = [
     component: Notifications,
   },
   {
-    path: "/notification/read",
+    path: "/notification.txt/read",
     name: "notification",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
