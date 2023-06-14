@@ -4,7 +4,7 @@ const instance = axios.create({
   headers: {
     Authorization: "Bearer " + localStorage.getItem("token"),
   },
-  // baseURL: process.env.VUE_APP_SERVER_URL,
+  baseURL: "https://medical-egorrridze.amvera.io/",
 });
 const _api = () => {
   return instance;
